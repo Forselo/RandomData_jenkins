@@ -1,21 +1,11 @@
-package com.demoqa;
+package tests;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeAll;
-import com.codeborne.selenide.Configuration;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class PracticeForm {
-    @BeforeAll
-    static void beforeAll(){
-        Configuration.holdBrowserOpen = false;
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadStrategy="eager";
-    }
-
+public class PracticeForm extends TestBase {
     @Test
     void demoQaTest() {
         open("/automation-practice-form");
