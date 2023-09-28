@@ -2,11 +2,6 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-
-
 public class PracticeFormPageObjectsTests extends TestBase {
     @Test
     void demoQaTest() {
@@ -16,29 +11,26 @@ public class PracticeFormPageObjectsTests extends TestBase {
                 .setEmail("aaa@a.com")
                 .setGender("Male")
                 .setUserNumber("7986957850")
-                .setDateOfBirth("01", "February", "1991");
+                .setDateOfBirth("01", "February", "1991")
+                .setSubjects("Arts")
+                .setHobby("Sports")
+                .uploadPicture("panda.jpg")
+                .setCurrentAddress("Kazan")
+                .setState("NCR")
+                .setCity("Delhi")
+                .clickSubmit();
 
-        $("#subjectsInput").setValue("Arts");
-        $("#subjectsInput").pressEnter();
-        $(byText("Sports")).click();
-        $("#uploadPicture").uploadFromClasspath("panda.jpg");
-        $("#currentAddress").setValue("Kazan");
-        $("#state").click();
-        $("#stateCity-wrapper").$(byText("NCR")).click();
-        $("#city").click();
-        $("#stateCity-wrapper").$(byText("Delhi")).click();
-        $("#submit").click();
-        $(".table").shouldHave(
-                text("Seva Ivanov"),
-                text("aaa@a.com"),
-                text("Male"),
-                text("7986957850"),
-                text("01 February,1991"),
-                text("Arts"),
-                text("Sports"),
-                text("panda.jpg"),
-                text("Kazan"),
-                text("NCR Delhi"));
 
+        registrationPage.verifyRegistrationResultsModalAppears()
+                .verifyResult("Student Name", "Seva Ivanov")
+                .verifyResult("Student Email", "aaa@a.com")
+                .verifyResult("Gender", "Male")
+                .verifyResult("Mobile", "7986957850")
+                .verifyResult("Date of Birth", "01 February,1991")
+                .verifyResult("Subjects", "Arts")
+                .verifyResult("Hobbies", "Sports")
+                .verifyResult("Picture", "panda.jpg")
+                .verifyResult("Address", "Kazan")
+                .verifyResult("State and City", "NCR Delhi");
     }
 }
