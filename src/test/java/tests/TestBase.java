@@ -7,12 +7,13 @@ import pages.RegistrationPage;
 public class TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
+
     @BeforeAll
-    static void beforeAll(){
+    static void beforeAll() {
         Configuration.holdBrowserOpen = false;
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadStrategy="eager";
+        Configuration.pageLoadStrategy = "eager";
     }
 
 }

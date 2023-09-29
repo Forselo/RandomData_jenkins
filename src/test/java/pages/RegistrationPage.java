@@ -1,24 +1,25 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import pages.components.BasePage;
 import pages.components.CalendarComponent;
 import pages.components.ResultsModal;
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
 
-public class RegistrationPage {
+public class RegistrationPage extends BasePage {
 
     ///// SelenideElements
     CalendarComponent calendar = new CalendarComponent();
     ResultsModal resultsModal = new ResultsModal();
+
     SelenideElement titleLabel = $(".practice-form-wrapper"),
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
             genderWrapper = $("#genterWrapper"),
             userNumberInput = $("#userNumber"),
+            dateOfBirthInput = $("#dateOfBirthInput"),
             subjectsInput = $("#subjectsInput"),
             hobbies = $("#hobbiesWrapper"),
             pictureInput = $("#uploadPicture"),
@@ -30,12 +31,10 @@ public class RegistrationPage {
 
 
     ///// Actions
-    public RegistrationPage openPage() {
-        open("/automation-practice-form");
-        titleLabel.shouldHave(text("Student Registration Form"));
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
 
+    public RegistrationPage openPage(String url) {
+        open(url);
+        removeBanner();
         return this;
     }
 
@@ -70,17 +69,8 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setDateOfBirth(String day, String month, String year) {
-        $("#dateOfBirthInput").click();
-        calendar.setDate("01", "February", "1991");
-
-        return this;
-    }
-
-
-    public RegistrationPage checkResult(String key, String value) {
-        $(".table-responsive").$(byText(key)).parent()
-                .shouldHave(text(value));
-
+        dateOfBirthInput.click();
+        calendar.setDate(day, month, year);
         return this;
     }
 

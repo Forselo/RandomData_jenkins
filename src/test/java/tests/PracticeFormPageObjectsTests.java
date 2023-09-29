@@ -3,9 +3,10 @@ package tests;
 import org.junit.jupiter.api.Test;
 
 public class PracticeFormPageObjectsTests extends TestBase {
+    private static final String URL_DEMO_QA = "/automation-practice-form";
     @Test
     void demoQaTest() {
-        registrationPage.openPage()
+        registrationPage.openPage(URL_DEMO_QA)
                 .setFirstName("Seva")
                 .setLastName("Ivanov")
                 .setEmail("aaa@a.com")
