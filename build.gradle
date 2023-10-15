@@ -53,6 +53,6 @@ test {
 
 task simple_test(type: Test) {
     useJUnitPlatform {
-        includeTags("simple")
+        includeTags("demoqa")
     }
 }
