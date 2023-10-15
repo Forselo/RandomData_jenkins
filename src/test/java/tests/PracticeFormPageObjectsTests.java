@@ -1,7 +1,9 @@
 package tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import utils.RandomUtils;
+@Tag("simle")
 public class PracticeFormPageObjectsTests extends TestBase {
     private static final String URL_DEMO_QA = "/automation-practice-form";
     @Test
