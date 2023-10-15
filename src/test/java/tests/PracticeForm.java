@@ -15,6 +15,7 @@ import java.util.Map;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static io.qameta.allure.Allure.step;
 
 @Tag("demoqa")
 public class PracticeForm  {
@@ -46,9 +47,12 @@ public class PracticeForm  {
     }
     @Test
     void demoQaTest() {
+        step("Open form", () -> {
         open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
+        });
+        step("Fill form", () -> {
         $("#firstName").setValue("Seva");
         $("#lastName").setValue("Ivanov");
         $("#userEmail").setValue("aaa@a.com");
@@ -69,6 +73,8 @@ public class PracticeForm  {
         $("#city").click();
         $("#stateCity-wrapper").$(byText("Delhi")).click();
         $("#submit").click();
+        });
+        step("Verify results", () -> {
         $(".table").shouldHave(
                 text("Seva Ivanov"),
                 text("aaa@a.com"),
@@ -80,6 +86,7 @@ public class PracticeForm  {
                 text("panda.jpg"),
                 text("Kazan"),
                 text("NCR Delhi"));
+        });
 
     }
 
