@@ -47,12 +47,12 @@ public class PracticeForm  {
     }
     @Test
     void demoQaTest() {
-        step("Open form", () -> {
+        step("Открытие страницы", () -> {
         open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         });
-        step("Fill form", () -> {
+        step("Заполнение формы", () -> {
         $("#firstName").setValue("Seva");
         $("#lastName").setValue("Ivanov");
         $("#userEmail").setValue("aaa@a.com");
@@ -74,7 +74,7 @@ public class PracticeForm  {
         $("#stateCity-wrapper").$(byText("Delhi")).click();
         $("#submit").click();
         });
-        step("Verify results", () -> {
+        step("Проверка формы", () -> {
         $(".table").shouldHave(
                 text("Seva Ivanov"),
                 text("aaa@a.com"),
